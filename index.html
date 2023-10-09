@@ -1,0 +1,284 @@
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HU Honours Schitterdag Kompas</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            text-align: center;
+
+            background-color: #009ed9;
+
+            color: #fff;
+
+            padding: 40px;
+
+        }
+ 
+
+        .bingo-card {
+
+            display: none;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 10px;
+
+            max-width: 600px;
+
+            margin: 0 auto;
+
+            background-color: #fff;
+
+            border-radius: 10px;
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+            padding: 20px;
+
+            animation: fadeIn 1s;
+
+        }
+ 
+
+        .bingo-item {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            height: 100px;
+
+            background-color: #9ED900;
+
+            color: #fff;
+
+            font-weight: bold;
+
+            font-size: 14px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            transform: scale(0);
+
+            animation: appear 0.5s forwards;
+
+        }
+ 
+
+        h1 {
+
+            font-size: 24px;
+
+            margin-bottom: 20px;
+
+        }
+ 
+
+        button {
+
+            background-color: #ee4128;
+
+            color: #fff;
+
+            border: none;
+
+            padding: 10px 20px;
+
+            font-size: 16px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            transition: background-color 0.3s;
+
+        }
+ 
+
+        button:hover {
+
+            background-color: #D22911;
+
+        }
+ 
+
+        @keyframes appear {
+
+            to {
+
+                transform: scale(1);
+
+            }
+
+        }
+ 
+
+        @keyframes fadeIn {
+
+            to {
+
+                opacity: 1;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h2>Schitterdag Kompas</h1>
+
+    <p>Als Hogeschool Utrecht docent kun jij een verschil maken in het academische leven van een student! </p>
+ 
+
+    <p>Doe mee met HU Honours, informeer vijf studenten over ons Honours-programma en inspireer de volgende generatie. Samen bouwen we aan een stralende toekomst!</p>
+
+    
+
+    <button onclick="generateRandomCard()">Genereer Kaart</button>
+
+    <div class="bingo-card">
+
+        <!-- Hier worden willekeurige 9 onderwerpen weergegeven -->
+
+        <!-- Deze worden gegenereerd door JavaScript -->
+
+    </div>
+ 
+
+    <script>
+
+        const studentOptions = [
+
+            "Student met passie voor leren",
+
+            "Inspirerende teamspeler",
+
+            "Actieve deelnemer aan extracurriculaire activiteiten",
+
+            "Probleemoplosser",
+
+            "Creatieve denker",
+
+            "Empathische luisteraar",
+
+            "Doorzetter",
+
+            "Communicatievaardig",
+
+            "Leergierige geest",
+
+            "Mentor voor medestudenten",
+
+            "Innovatieve ideeënbrenger",
+
+            "Positieve bijdrager aan de groep",
+
+            "Organisatorisch talent",
+
+            "Samenwerker",
+
+            "Kritische denker",
+
+            "Flexibele planner",
+
+            "Betrokken bij de gemeenschap",
+
+            "Betrouwbaar teamlid",
+
+            "Verantwoordelijke student",
+
+            "Vriendelijk en respectvol",
+
+            "Zelfreflecterend",
+
+            "Zorgzaam voor anderen",
+
+            "Volhardend in het najagen van doelen",
+
+            "Vindingrijk",
+
+            "Aandacht voor detail",
+
+            "Onderzoekend en nieuwsgierig",
+
+            "Toekomstgericht"
+
+        ];
+ 
+
+        function generateRandomCard() {
+
+            const items = document.querySelectorAll('.bingo-item');
+
+            items.forEach(item => {
+
+                item.classList.remove('selected');
+
+            });
+ 
+
+            const selectedItems = [];
+ 
+
+            while (selectedItems.length < 9) {
+
+                const randomIndex = Math.floor(Math.random() * studentOptions.length);
+
+                const randomItem = studentOptions[randomIndex];
+
+                if (!selectedItems.includes(randomItem)) {
+
+                    selectedItems.push(randomItem);
+
+                }
+
+            }
+ 
+
+            const bingoCard = document.querySelector('.bingo-card');
+
+            bingoCard.innerHTML = '';
+ 
+
+            selectedItems.forEach((itemText, index) => {
+
+                const item = document.createElement('div');
+
+                item.classList.add('bingo-item');
+
+                item.textContent = itemText;
+
+                item.style.animationDelay = `${index * 0.1}s`; // Delay animatie voor elk item
+
+                bingoCard.appendChild(item);
+
+            });
+ 
+
+            bingoCard.style.display = 'grid';
+
+        }
+
+    </script>
+
+</body>
+
+</html>
